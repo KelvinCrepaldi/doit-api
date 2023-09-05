@@ -2,16 +2,14 @@ import AppDataSource from "../../data-source";
 import { Task } from "../../entities/task.entity";
 import { AppError } from "../../errors/appErrors";
 import {
-  IUpdateTaskRequest,
-  IUpdateTaskResponse,
-} from "../../interfaces/tasks/updateTask.interfaces";
+  ICheckTaskRequest,
+  ICheckTaskResponse,
+} from "../../interfaces/tasks/checkTask.interfaces";
 
-const updateTaskService = async ({
-  message,
-  title,
+const checkTaskService = async ({
   taskId,
   userId,
-}: IUpdateTaskRequest): Promise<IUpdateTaskResponse> => {
+}: ICheckTaskRequest): Promise<ICheckTaskResponse> => {
   const taskRepository = AppDataSource.getRepository(Task);
 
   const task = await taskRepository.findOne({
@@ -28,16 +26,15 @@ const updateTaskService = async ({
   if (task.concluded === true) {
     throw new AppError(
       403,
-      "Esta tarefa já foi concluída e não pode ser modificada."
+      "Esta tarefa já foi concluída e não pode ser marcada como concluída novamente."
     );
   }
 
-  message && (task.message = message);
-  title && (task.title = title);
+  task.concluded = true;
 
   await taskRepository.save(task);
 
   return { message: "Tarefa modificada com sucesso!" };
 };
 
-export default updateTaskService;
+export default checkTaskService;
