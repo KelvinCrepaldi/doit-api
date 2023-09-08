@@ -7,7 +7,7 @@ import { DataSource } from "typeorm";
 import AppDataSource from "../../data-source";
 import { User } from "../../entities/user.entity";
 
-describe("Create an user", () => {
+describe("Create user account", () => {
   let connection: DataSource;
 
   beforeAll(async () => {
