@@ -13,7 +13,7 @@ const taskRoutes = Router();
 taskRoutes.post("/", verifyAuthTokenMiddleware, createTaskController);
 taskRoutes.get("/", verifyAuthTokenMiddleware, listTasksController);
 taskRoutes.delete("/:taskId", verifyAuthTokenMiddleware, deleteTaskController);
-taskRoutes.patch(
+taskRoutes.post(
   "/:taskId/check",
   verifyAuthTokenMiddleware,
   checkTaskController

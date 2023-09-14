@@ -7,7 +7,6 @@ import {
 } from "../../interfaces/tasks/updateTask.interfaces";
 
 const updateTaskService = async ({
-  message,
   title,
   taskId,
   userId,
@@ -32,7 +31,6 @@ const updateTaskService = async ({
     );
   }
 
-  message && (task.message = message);
   title && (task.title = title);
 
   await taskRepository.save(task);

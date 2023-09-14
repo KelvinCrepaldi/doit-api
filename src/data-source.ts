@@ -4,6 +4,7 @@ import "reflect-metadata";
 import { Task } from "./entities/task.entity";
 import { User } from "./entities/user.entity";
 import { CreateTables1693895741184 } from "./migrations/1693895741184-createTables";
+import { RemoveTextTask1694525841722 } from "./migrations/1694525841722-removeTextTask";
 
 const AppDataSource =
   process.env.NODE_ENV === "test"
@@ -23,7 +24,7 @@ const AppDataSource =
         synchronize: false,
         logging: true,
         entities: [User, Task],
-        migrations: [CreateTables1693895741184],
+        migrations: [CreateTables1693895741184, RemoveTextTask1694525841722],
       });
 
 export default AppDataSource;

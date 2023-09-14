@@ -8,10 +8,10 @@ import updateTaskService from "../services/task/updateTask.service";
 
 const createTaskController = async (req: Request, res: Response) => {
   try {
-    const { title, message } = req.body;
+    const { title } = req.body;
     const userId = req.user.id;
 
-    const createTask = await createTaskService({ title, message, userId });
+    const createTask = await createTaskService({ title, userId });
 
     return res.status(200).send(createTask);
   } catch (error) {
@@ -67,11 +67,11 @@ const checkTaskController = async (req: Request, res: Response) => {
 
 const updateTaskController = async (req: Request, res: Response) => {
   try {
-    const { title, message } = req.body;
+    const { title } = req.body;
     const { taskId } = req.params;
     const userId = req.user.id;
 
-    const tasks = await updateTaskService({ title, message, taskId, userId });
+    const tasks = await updateTaskService({ title, taskId, userId });
 
     return res.status(200).send(tasks);
   } catch (error) {

@@ -9,7 +9,6 @@ import {
 
 const createTaskService = async ({
   title,
-  message,
   userId,
 }: ICreateTaskRequest): Promise<ICreateTaskResponse> => {
   const userRepository = AppDataSource.getRepository(User);
@@ -24,7 +23,6 @@ const createTaskService = async ({
   const task = new Task();
 
   task.concluded = false;
-  task.message = message;
   task.title = title;
   task.user = user;
 

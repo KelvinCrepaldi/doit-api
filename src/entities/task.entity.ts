@@ -16,9 +16,6 @@ export class Task {
   @Column()
   title: string;
 
-  @Column()
-  message: string;
-
   @CreateDateColumn()
   createdAt: Date;
 
